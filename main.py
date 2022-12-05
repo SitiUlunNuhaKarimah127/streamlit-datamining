@@ -2,21 +2,13 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from io import StringIO, BytesIO
-import urllib.request
 import joblib
-import time
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score
-import os,sys
-from scipy import stats
 
 # #modul library data testing dan training
 from sklearn.model_selection import train_test_split
@@ -129,7 +121,6 @@ with modeling:
     y_baru = le.fit_transform(y)
     
     #Split Dataset
-    from sklearn.model_selection import train_test_split
     X_train, X_test, y_train, y_test=train_test_split(X, y_baru, test_size=0.2, random_state=1)
     with knn:
         #Inisialisasi Model KNN
@@ -160,8 +151,6 @@ with modeling:
     
     with decission_tree:
         #Inisialisasi Model Decission Tree
-        #training the model on training set
-        from sklearn.tree import DecisionTreeClassifier
         gnb = DecisionTreeClassifier()
         gnb.fit(X_train, y_train)
         filenameModelDec = 'modelDec.pkl'
@@ -224,53 +213,7 @@ with implementation:
     a = np.array([[ind_usia, ind_jenis_kelamin, ind_merokok, ind_bekerja, ind_rumah_tangga, ind_aktivitas_begadang, ind_aktivitas_olahraga, ind_asuransi, ind_penyakit_bawaan ]])
     # test_data = np.array(a).reshape(1, -1)
     # test_data
-    data_inputan = pd.DataFrame(a, columns =['Usia', ' Jenis_Kelamin', 'Merokok', 'Bekerja', 'Rumah_Tangga', 'Aktivitas_Begadang', 'Aktivitas_Olahraga',  'Asuransi', 'Penyakit_bawaan'])
-    #data_inputan
-
-    #  Tahap Normalisasi data string ke kategori
-    # data_inputan['Usia'] = data_inputan['Usia'].astype('category')
-    # data_inputan['Jenis_Kelamin'] = data_inputan['Jenis_Kelamin'].astype('category')
-    # data_inputan['Merokok'] = data_inputan['Merokok'].astype('category')
-    # data_inputan['Bekerja'] = data_inputan['Bekerja'].astype('category')
-    # data_inputan['Rumah_Tangga'] = data_inputan['Rumah_Tangga'].astype('category')
-    # data_inputan['Aktivitas_Begadang'] = data_inputan['Aktivitas_Begadang'].astype('category')
-    # data_inputan['Aktivitas_Olahraga'] = data_inputan['Aktivitas_Olahraga'].astype('category')
-    # data_inputan['Asuransi'] = data_inputan['Asuransi'].astype('category')
-    # data_inputan['Penyakit_Bawaan'] = data_inputan['Penyakit_Bawaan'].astype('category')
-    # cat_columns = data_inputan.select_dtypes(['category']).columns
-    # data_inputan[cat_columns] = data_inputan[cat_columns].apply(lambda x: x.cat.codes)
-    # data_inputan
-    
-    
-
-
-    # test_data.shape
-    
-    # Tahap Normalisasi
-    # test_data = pd.DataFrame(X)
-    # test_data['Usia'] = test_data['Usia'].astype('category')
-    # test_data['Jenis_Kelamin'] = test_data['Jenis_Kelamin'].astype('category')
-    # test_data['Merokok'] = test_data['Merokok'].astype('category')
-    # test_data['Bekerja'] = test_data['Bekerja'].astype('category')
-    # test_data['Rumah_Tangga'] = test_data['Rumah_Tangga'].astype('category')
-    # test_data['Aktivitas_Begadang'] = test_data['Aktivitas_Begadang'].astype('category')
-    # test_data['Aktivitas_Olahraga'] = test_data['Aktivitas_Olahraga'].astype('category')
-    # test_data['Asuransi'] = test_data['Asuransi'].astype('category')
-    # test_data['Penyakit_Bawaan'] = test_data['Penyakit_Bawaan'].astype('category')
-    # cat_columns = test_data.select_dtypes(['category']).columns
-    # test_data[cat_columns] = test_data[cat_columns].apply(lambda test_data: test_data.cat.codes)
-    # test_data
-    #scalertest = MinMaxScaler()
-    #scaledtest = scalertest.fit_transform(test_data)
-    #features_namestest = test_data.columns.copy()
-    #scaled_featurestest = pd.DataFrame(scaledtest, columns=features_names)
-    #scaled_featurestest
-    
-    # #Load Model Normalisasi
-    # scaler = joblib.load(data_inputan)
-    # test_d = scaler.fit_transform(data_inputan)
-    # pd.DataFrame(test_d)
-    
+    data_inputan = pd.DataFrame(a, columns =['Usia', ' Jenis_Kelamin', 'Merokok', 'Bekerja', 'Rumah_Tangga', 'Aktivitas_Begadang', 'Aktivitas_Olahraga',  'Asuransi', 'Penyakit_bawaan'])    
     label = {0:'tidak terdeteksi penyakit paru-paru', 1:'terdeteksi penyakit paru-paru'}
     KNN, Naive_Bayes, Decission_tree= st.tabs(["Knn", "Naive_Bayes", "Decission_Tree"])
     
