@@ -36,10 +36,7 @@ with deskripsi:
              """)
     st.write("""
              Jenis - jenis penyakit paru-paru yang paling umum:
-             1. Penyakit Paru Obstruktif Kronis (PPOK)
-             2. Pneumonia
-             3. Tuberkulosis
-             4. Kanker Paru-Paru 
+             1. Kanker Paru-Paru 
              """)
     st.write("""
              Penderita Penyakit Paru-paru bisa mengalami gejala berupa:
